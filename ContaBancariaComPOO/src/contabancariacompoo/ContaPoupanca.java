@@ -4,17 +4,13 @@
  */
 package contabancariacompoo;
 public class ContaPoupanca extends Conta {
-    // Construtor
-    public ContaPoupanca(String numeroConta) {
-        super(numeroConta);
+    public ContaPoupanca(String numeroConta, Cliente cliente) {
+        super(numeroConta, cliente);
     }
 
-    // Implementação do método sacar
     @Override
     public void sacar(double valor) {
-        // Lógica específica para saque em conta poupança
         if (getSaldo() >= valor) {
-            // Não pode sacar se o saldo não for suficiente
             this.depositar(-valor);
         } else {
             System.out.println("Saldo insuficiente para saque.");

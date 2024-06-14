@@ -3,14 +3,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package contabancariacompoo;
-
-public abstract class Conta {
+// Classe Conta.java
+public abstract class Conta implements IConta {
     private String numeroConta;
     private double saldo;
+    private Cliente cliente;
 
     // Construtor
-    public Conta(String numeroConta) {
+    public Conta(String numeroConta, Cliente cliente) {
         this.numeroConta = numeroConta;
+        this.cliente = cliente;
         this.saldo = 0.0;
     }
 
@@ -23,15 +25,17 @@ public abstract class Conta {
         return saldo;
     }
 
-    // Método para depósito
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    // Métodos da interface
     public void depositar(double valor) {
         this.saldo += valor;
     }
 
-    // Método para saque
     public abstract void sacar(double valor);
 
-    // Método para transferência
     public void transferir(Conta destino, double valor) {
         if (this.saldo >= valor) {
             this.sacar(valor);

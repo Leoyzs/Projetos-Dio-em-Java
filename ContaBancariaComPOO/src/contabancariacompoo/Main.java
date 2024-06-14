@@ -6,15 +6,34 @@ package contabancariacompoo;
 
 public class Main {
     public static void main(String[] args) {
-        ContaCorrente cc = new ContaCorrente("123456");
-        ContaPoupanca cp = new ContaPoupanca("789012");
+        // Criando um cliente
+        Cliente cliente1 = new Cliente("João", "123.456.789-00");
 
+        // Criando contas
+        ContaCorrente cc = new ContaCorrente("123456", cliente1);
+        ContaPoupanca cp = new ContaPoupanca("789012", cliente1);
+
+        // Adicionando contas ao banco
+        Banco banco = new Banco();
+        banco.adicionarConta(cc);
+        banco.adicionarConta(cp);
+
+        // Realizando operações
         cc.depositar(1000);
         cp.depositar(500);
 
-        cc.transferir(cp, 300);
-
         System.out.println("Saldo conta corrente: " + cc.getSaldo());
         System.out.println("Saldo conta poupança: " + cp.getSaldo());
+
+        cc.sacar(200);
+        cp.sacar(100);
+
+        System.out.println("Saldo conta corrente após saque: " + cc.getSaldo());
+        System.out.println("Saldo conta poupança após saque: " + cp.getSaldo());
+
+        cc.transferir(cp, 300);
+
+        System.out.println("Saldo conta corrente após transferência: " + cc.getSaldo());
+        System.out.println("Saldo conta poupança após transferência: " + cp.getSaldo());
     }
 }
